@@ -16,7 +16,7 @@ namespace CarSystem.ViewModels.Cars
 
         public double EngineCapacity { get; set; }
 
-        public TypeOfColor TypeOfColor { get; set; }
+        public string TypeOfColor { get; set; }
 
         public int Horsepower { get; set; }
 

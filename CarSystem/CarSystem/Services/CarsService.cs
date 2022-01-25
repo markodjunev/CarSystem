@@ -74,7 +74,7 @@ namespace CarSystem.Services
                     Horsepower = x.Horsepower,
                     MakeName = x.Make.Name,
                     ModelName = x.Model.Name,
-                    TypeOfColor = x.TypeOfColor,
+                    TypeOfColor = x.TypeOfColor.ToString(),
                 }).ToList();
 
             return cars;
@@ -82,7 +82,7 @@ namespace CarSystem.Services
 
         public UpdateCarViewModel GetUpdateModel(int id)
         {
-            var car = this.dbContext.Cars.Select(x => new UpdateCarViewModel
+            var car = this.dbContext.Cars.Where(x => x.Id == id).Select(x => new UpdateCarViewModel
             {
                 OwnerName = x.OwnerName,
                 NumberPlate = x.NumberPlate,
@@ -90,7 +90,7 @@ namespace CarSystem.Services
                 Horsepower = x.Horsepower,
                 MakeId = x.MakeId,
                 ModelId = x.ModelId,
-                TypeOfColor = x.TypeOfColor,
+                TypeOfColor = x.TypeOfColor.ToString(),
             }).FirstOrDefault();
 
             return car;

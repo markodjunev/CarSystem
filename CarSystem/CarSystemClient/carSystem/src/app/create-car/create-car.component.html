@@ -1,0 +1,115 @@
+<h2 class="text-center mt-2">Create new car</h2>
+<hr>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <form [formGroup]="createCarForm" (ngSubmit)="create()">
+            <div class="form-group">
+                <div class="text-center">
+                    <label for="exampleInputTitle">OwnerName</label>
+                </div>
+                <input type="text" class="form-control" formControlName="ownerName" placeholder="OwnerName...">
+            </div>
+            <div class="text-center mt-2">
+                <span *ngIf="ownerName.touched && ownerName.errors?.required" class="text-danger">
+                    Title field is required!
+                </span>
+            </div>
+            <hr>
+            <div class="form-group">
+                <div class="text-center">
+                    <label for="exampleInputTitle">Number Plate</label>
+                </div>
+                <input type="text" class="form-control" formControlName="numberPlate" placeholder="NumberPlate...">
+            </div>
+            <div class="text-center mt-2">
+                <span *ngIf="numberPlate.touched && numberPlate.errors?.required" class="text-danger">
+                    Title field is required!
+                </span>
+            </div>
+            <hr>
+            <div class="form-group">
+                <div class="text-center">
+                    <label for="exampleInputTitle">Engine Capacity</label>
+                </div>
+                <input type="number" class="form-control" formControlName="engineCapacity" placeholder="EngineCapacity...">
+            </div>
+            <div class="text-center mt-2">
+                <span *ngIf="engineCapacity.touched && engineCapacity.errors?.required" class="text-danger">
+                    Title field is required!
+                </span>
+            </div>
+            <div class="text-center mt-2">
+                <span *ngIf="engineCapacity.touched && engineCapacity.errors?.min" class="text-danger">
+                    Title field must be greater than 0!
+                </span>
+            </div>
+            <hr>
+            <div class="form-group">
+                <div class="text-center">
+                    <label for="exampleInputTitle">Horsepower</label>
+                </div>
+                <input type="number" class="form-control" formControlName="horsepower" placeholder="Horsepower...">
+            </div>
+            <div class="text-center mt-2">
+                <span *ngIf="horsepower.touched && horsepower.errors?.required" class="text-danger">
+                    Title field is required!
+                </span>
+            </div>
+            <div class="text-center mt-2">
+                <span *ngIf="horsepower.touched && horsepower.errors?.min" class="text-danger">
+                    Title field must be greater than 0!
+                </span>
+            </div>
+            <hr>
+            <div class="form-group">
+                <div class="text-center">
+                    <label for="exampleInputMake">Type of Color</label>
+                </div>
+                <select class="form-control" formControlName="typeOfColor">
+                    <option value="">Select</option>
+                    <option *ngFor="let typeOfColor of typesOfColor" [value]="typeOfColor">{{typeOfColor}}</option>
+                </select>
+                <div class="text-center mt-2">
+                    <span *ngIf="typeOfColor.touched && typeOfColor.errors?.required" class="text-danger">
+                        This field is required!
+                    </span>
+                </div>
+            </div>
+            <hr>
+            <div class="form-group">
+                <div class="text-center">
+                    <label for="exampleInputMake">Make</label>
+                </div>
+                <select class="form-control" formControlName="makeId" (change)="updateModels($event.target.value)">
+                    <option value="">Select</option>
+                    <option *ngFor="let make of makes" [value]="make.id">{{make.name}}</option>
+                </select>
+                <div class="text-center mt-2">
+                    <span *ngIf="makeId.touched && makeId.errors?.required" class="text-danger">
+                        This field is required!
+                    </span>
+                </div>
+            </div>
+            <hr>
+            <div class="form-group">
+                <div class="text-center">
+                    <label for="exampleInputMake">Model</label>
+                </div>
+                <select class="form-control" formControlName="modelId">
+                    <option value="">Select</option>
+                    <option *ngFor="let model of models" [value]="model.id">{{model.name}}</option>
+                </select>
+                <div class="text-center mt-2">
+                    <span *ngIf="modelId.touched && modelId.errors?.required" class="text-danger">
+                        This field is required!
+                    </span>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <button type="submit" class="btn btn-outline-primary">Create</button>
+            </div>
+        </form>
+    </div>
+</div>
