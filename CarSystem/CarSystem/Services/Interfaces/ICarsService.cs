@@ -10,7 +10,7 @@ namespace CarSystem.Services.Interfaces
     public interface ICarsService
     {
         Task CreateAsync(string ownerName, string numberPlate, double engineCapacity, TypeOfColor typeOfColor,
-            int horsepower, int makeId, int modelId);
+            int horsepower, int makeId, int modelId, string imageUrl);
 
         bool ExistNumberPlate(string numberPlate);
 

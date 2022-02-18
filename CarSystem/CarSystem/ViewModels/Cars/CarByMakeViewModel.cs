@@ -23,5 +23,7 @@ namespace CarSystem.ViewModels.Cars
         public string MakeName { get; set; }
 
         public string ModelName { get; set; }
+
+        public string ImageUrl { get; set; }
     }
 }

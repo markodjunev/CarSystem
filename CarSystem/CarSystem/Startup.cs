@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CarSystem.Middlewares.Extensions;
+using CloudinaryDotNet;
 
 namespace CarSystem
 {
@@ -57,9 +58,21 @@ namespace CarSystem
 
             });
 
+            services.AddSingleton(this.Configuration);
+
             services.AddScoped<IMakesService, MakesService>();
             services.AddScoped<IModelsService, ModelsService>();
             services.AddScoped<ICarsService, CarsService>();
+            services.AddScoped<ICloudinaryService, CloudinaryService>();
+
+            Account account = new Account(
+                             this.Configuration["Cloudinary:AppName"],
+                             this.Configuration["Cloudinary:AppKey"],
+                             this.Configuration["Cloudinary:AppSecret"]);
+
+            Cloudinary cloudinary = new Cloudinary(account);
+
+            services.AddSingleton(cloudinary);
 
             services.AddControllers();
         }

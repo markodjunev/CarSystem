@@ -24,8 +24,11 @@ export class CarsService {
     return this.http.delete(this.carPath + '/delete/' + id);
   }
 
-  create(data: CreateCar): Observable<CreateCar> {
-    return this.http.post<CreateCar>(this.carPath + '/create', data);
+  create(data: any): Observable<any> {
+    return this.http.post<any>(this.carPath + '/create', data, {
+      reportProgress: true,
+      observe: 'events'
+    });
   }
 
   getUpdateModel(id: number) : Observable<UpdateCar> {

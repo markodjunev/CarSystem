@@ -7,4 +7,5 @@ export interface CarByMake{
     horsepower: number;
     makeName: string;
     modelName: string;
+    imageUrl: string;
 }

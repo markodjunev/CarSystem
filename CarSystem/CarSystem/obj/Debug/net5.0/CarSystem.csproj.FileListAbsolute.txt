@@ -152,3 +152,5 @@ C:\Users\User\Documents\GitHub\CarSystem\CarSystem\CarSystem\obj\Debug\net5.0\Ca
 C:\Users\User\Documents\GitHub\CarSystem\CarSystem\CarSystem\obj\Debug\net5.0\ref\CarSystem.dll
 C:\Users\User\Documents\GitHub\CarSystem\CarSystem\CarSystem\obj\Debug\net5.0\CarSystem.pdb
 C:\Users\User\Documents\GitHub\CarSystem\CarSystem\CarSystem\obj\Debug\net5.0\CarSystem.genruntimeconfig.cache
+C:\Users\User\Documents\GitHub\CarSystem\CarSystem\CarSystem\bin\Debug\net5.0\CloudinaryDotNet.dll
+C:\Users\User\Documents\GitHub\CarSystem\CarSystem\CarSystem\bin\Debug\net5.0\Microsoft.Extensions.WebEncoders.dll

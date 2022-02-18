@@ -14,17 +14,19 @@ namespace CarSystem.Controllers
         private readonly ICarsService carsService;
         private readonly IMakesService makesService;
         private readonly IModelsService modelsService;
+        private readonly ICloudinaryService cloudinaryService;
 
-        public CarsController(ICarsService carsService, IMakesService makesService, IModelsService modelsService)
+        public CarsController(ICarsService carsService, IMakesService makesService, IModelsService modelsService, ICloudinaryService cloudinaryService)
         {
             this.carsService = carsService;
             this.makesService = makesService;
             this.modelsService = modelsService;
+            this.cloudinaryService = cloudinaryService;
         }
 
         [HttpPost]
         [Route(nameof(Create))]
-        public async Task<IActionResult> Create(CreateCarInputModel input)
+        public async Task<IActionResult> Create([FromForm]CreateCarInputModel input)
         {
             var existNumberPlate = this.carsService.ExistNumberPlate(input.NumberPlate);
 
@@ -47,10 +49,14 @@ namespace CarSystem.Controllers
                 return BadRequest("Please insert a valid model!");
             }
 
+            string imageUrl = await this.cloudinaryService.UploadPictureAsync(
+                input.ImageUrl,
+                input.OwnerName);
+
             TypeOfColor typeOfColor = (TypeOfColor)Enum.Parse(typeof(TypeOfColor), input.TypeOfColor);
 
             await this.carsService.CreateAsync(input.OwnerName, input.NumberPlate, input.EngineCapacity,
-                typeOfColor, input.Horsepower, input.MakeId, input.ModelId);
+                typeOfColor, input.Horsepower, input.MakeId, input.ModelId, imageUrl);
 
             return Ok();
         }
