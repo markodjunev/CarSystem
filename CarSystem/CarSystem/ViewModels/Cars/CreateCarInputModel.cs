@@ -1,5 +1,5 @@
-﻿using CarSystem.Models.Enums;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace CarSystem.ViewModels.Cars
@@ -22,7 +22,7 @@ namespace CarSystem.ViewModels.Cars
         public int Horsepower { get; set; }
 
         [Required]
-        public IFormFile ImageUrl { get; set; }
+        public List<IFormFile> Images { get; set; }
 
         [Required]
         public int MakeId { get; set; }

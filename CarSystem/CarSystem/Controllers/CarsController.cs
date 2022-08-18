@@ -49,14 +49,20 @@ namespace CarSystem.Controllers
                 return BadRequest("Please insert a valid model!");
             }
 
-            string imageUrl = await this.cloudinaryService.UploadPictureAsync(
-                input.ImageUrl,
+            var imageUrls = new List<string>();
+            foreach (var image in input.Images)
+            {
+                string imageUrl = await this.cloudinaryService.UploadPictureAsync(
+                image,
                 input.OwnerName);
+
+                imageUrls.Add(imageUrl);
+            }
 
             TypeOfColor typeOfColor = (TypeOfColor)Enum.Parse(typeof(TypeOfColor), input.TypeOfColor);
 
             await this.carsService.CreateAsync(input.OwnerName, input.NumberPlate, input.EngineCapacity,
-                typeOfColor, input.Horsepower, input.MakeId, input.ModelId, imageUrl);
+                typeOfColor, input.Horsepower, input.MakeId, input.ModelId);
 
             return Ok();
         }

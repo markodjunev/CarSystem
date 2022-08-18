@@ -26,6 +26,8 @@ namespace CarSystem.Data
 
         public DbSet<Car> Cars { get; set; }
 
+        public DbSet<CarImage> CarImages { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)

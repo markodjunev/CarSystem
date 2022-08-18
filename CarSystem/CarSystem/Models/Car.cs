@@ -15,8 +15,6 @@
 
         public int Horsepower { get; set; }
 
-        public string ImageUrl { get; set; }
-
         public int MakeId { get; set; }
 
         public virtual Make Make { get; set; }

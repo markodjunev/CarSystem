@@ -20,7 +20,7 @@ namespace CarSystem.Services
         }
 
         public async Task CreateAsync(string ownerName, string numberPlate, double engineCapacity, 
-            TypeOfColor typeOfColor, int horsepower, int makeId, int modelId, string imageUrl)
+            TypeOfColor typeOfColor, int horsepower, int makeId, int modelId)
         {
             var car = new Car
             {
@@ -31,7 +31,6 @@ namespace CarSystem.Services
                 Horsepower = horsepower,
                 MakeId = makeId,
                 ModelId = modelId,
-                ImageUrl = imageUrl,
             };
 
             await this.dbContext.Cars.AddAsync(car);
@@ -77,7 +76,6 @@ namespace CarSystem.Services
                     MakeName = x.Make.Name,
                     ModelName = x.Model.Name,
                     TypeOfColor = x.TypeOfColor.ToString(),
-                    ImageUrl = x.ImageUrl,
                 }).ToList();
 
             return cars;
