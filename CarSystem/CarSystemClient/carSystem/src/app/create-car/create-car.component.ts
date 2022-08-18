@@ -36,7 +36,7 @@ export class CreateCarComponent implements OnInit {
       horsepower: new FormControl('', [Validators.required, Validators.min(1)]),
       makeId: new FormControl('', [Validators.required]),
       modelId: new FormControl('', [Validators.required]),
-      imageUrl: new FormControl('', [Validators.required]),
+      images: new FormControl([], [Validators.required]),
     })
   }
 
@@ -51,17 +51,33 @@ export class CreateCarComponent implements OnInit {
       return;
     }
 
+    if (this.createCarForm.value['images'].length > 3) {
+      this.toastrService.info('You can upload up to 3 images...');
+      return;
+    }
+
     this.toastrService.info('Creating a new car...');
 
     const car: CreateCar = Object.assign({}, this.createCarForm.value);
     console.log(this.createCarForm.value);
+
     const formData = new FormData();
     for (const key of Object.keys(this.createCarForm.value)) {
-      const value = this.createCarForm.value[key];
-      console.log(value);
-      formData.append(key, value);
+      if (key !== 'images') {
+        const value = this.createCarForm.value[key];
+        console.log('Key: ' + key + ' Value: ' + value);
+        formData.append(key, value);
+      }
+      else {
+        console.log(this.createCarForm.value['images']);
+
+        for (let i = 0; i < this.createCarForm.value['images'].length; i++) {
+          formData.append('images', this.createCarForm.value['images'][i]);
+        }
+      }
     }
     console.log(formData);
+
 
     this.carsService.create(formData).subscribe(data => {
       this.toastrService.clear();
@@ -78,10 +94,10 @@ export class CreateCarComponent implements OnInit {
   }
 
   onFileChanged(event: any) {
-    const file = event.target.files[0];
-    console.log(file);
+    const files = event.target.files;
+    console.log(files);
     this.createCarForm.patchValue({
-      imageUrl: file,
+      images: files,
     });
   }
 
@@ -113,7 +129,7 @@ export class CreateCarComponent implements OnInit {
     return this.createCarForm.get('modelId');
   }
 
-  get imageUrl() {
-    return this.createCarForm.get('imageUrl');
+  get images() {
+    return this.createCarForm.get('images');
   }
 }

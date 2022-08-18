@@ -64,6 +64,7 @@ namespace CarSystem
             services.AddScoped<IModelsService, ModelsService>();
             services.AddScoped<ICarsService, CarsService>();
             services.AddScoped<ICloudinaryService, CloudinaryService>();
+            services.AddScoped<ICarImagesService, CarImagesService>();
 
             Account account = new Account(
                              this.Configuration["Cloudinary:AppName"],

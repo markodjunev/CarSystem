@@ -6,5 +6,5 @@ export interface CreateCar{
     horsepower: number;
     makeId: number;
     modelId: number;
-    imageUrl: File;
+    images: Array<File>;
 }

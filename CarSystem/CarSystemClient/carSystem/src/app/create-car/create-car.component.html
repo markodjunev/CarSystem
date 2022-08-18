@@ -113,10 +113,10 @@
                     <label for="exampleInputTitle">Image</label>
                 </div>
                 <input type="file" (change)="onFileChanged($event)" class="form-control-file"
-                    placeholder="Image...">
+                    placeholder="Image..." multiple>
             </div>
             <div class="text-center mt-2">
-                <span *ngIf="imageUrl.touched && imageUrl.errors?.required" class="text-danger">
+                <span *ngIf="images.touched && images.errors?.required" class="text-danger">
                     Title field is required!
                 </span>
             </div>

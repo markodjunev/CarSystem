@@ -15,13 +15,16 @@ namespace CarSystem.Controllers
         private readonly IMakesService makesService;
         private readonly IModelsService modelsService;
         private readonly ICloudinaryService cloudinaryService;
+        private readonly ICarImagesService carImagesService;
 
-        public CarsController(ICarsService carsService, IMakesService makesService, IModelsService modelsService, ICloudinaryService cloudinaryService)
+        public CarsController(ICarsService carsService, IMakesService makesService, IModelsService modelsService, ICloudinaryService cloudinaryService,
+            ICarImagesService carImagesService)
         {
             this.carsService = carsService;
             this.makesService = makesService;
             this.modelsService = modelsService;
             this.cloudinaryService = cloudinaryService;
+            this.carImagesService = carImagesService;
         }
 
         [HttpPost]
@@ -49,20 +52,19 @@ namespace CarSystem.Controllers
                 return BadRequest("Please insert a valid model!");
             }
 
-            var imageUrls = new List<string>();
+            TypeOfColor typeOfColor = (TypeOfColor)Enum.Parse(typeof(TypeOfColor), input.TypeOfColor);
+
+            var carId = await this.carsService.CreateAsync(input.OwnerName, input.NumberPlate, input.EngineCapacity,
+                typeOfColor, input.Horsepower, input.MakeId, input.ModelId);
+
             foreach (var image in input.Images)
             {
                 string imageUrl = await this.cloudinaryService.UploadPictureAsync(
                 image,
                 input.OwnerName);
 
-                imageUrls.Add(imageUrl);
+                await this.carImagesService.CreateAsync(carId, imageUrl);
             }
-
-            TypeOfColor typeOfColor = (TypeOfColor)Enum.Parse(typeof(TypeOfColor), input.TypeOfColor);
-
-            await this.carsService.CreateAsync(input.OwnerName, input.NumberPlate, input.EngineCapacity,
-                typeOfColor, input.Horsepower, input.MakeId, input.ModelId);
 
             return Ok();
         }

@@ -19,7 +19,7 @@ namespace CarSystem.Services
             this.dbContext = dbContext;
         }
 
-        public async Task CreateAsync(string ownerName, string numberPlate, double engineCapacity, 
+        public async Task<int> CreateAsync(string ownerName, string numberPlate, double engineCapacity, 
             TypeOfColor typeOfColor, int horsepower, int makeId, int modelId)
         {
             var car = new Car
@@ -35,6 +35,8 @@ namespace CarSystem.Services
 
             await this.dbContext.Cars.AddAsync(car);
             await this.dbContext.SaveChangesAsync();
+
+            return car.Id;
         }
 
         public async Task DeleteAsync(int id)
