@@ -3,6 +3,8 @@ using CarSystem.Models;
 using CarSystem.Models.Enums;
 using CarSystem.Services.Interfaces;
 using CarSystem.ViewModels.Cars;
+using CarSystem.ViewModels.Images;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -78,6 +80,11 @@ namespace CarSystem.Services
                     MakeName = x.Make.Name,
                     ModelName = x.Model.Name,
                     TypeOfColor = x.TypeOfColor.ToString(),
+                    ImageUrls = x.CarImages.Select(i => new ImageOriginalPath
+                    {
+                        ImageUrl = i.Image.OriginalPath,
+                    })
+                    .ToList(),
                 }).ToList();
 
             return cars;

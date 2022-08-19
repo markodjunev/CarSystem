@@ -1,4 +1,5 @@
 ﻿using CarSystem.Models.Enums;
+using CarSystem.ViewModels.Images;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,6 @@ namespace CarSystem.ViewModels.Cars
 
         public string ModelName { get; set; }
 
-        public string ImageUrl { get; set; }
+        public List<ImageOriginalPath> ImageUrls { get; set; }
     }
 }
