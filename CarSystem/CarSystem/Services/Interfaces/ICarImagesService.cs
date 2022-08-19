@@ -4,6 +4,6 @@
 
     public interface ICarImagesService
     {
-        Task CreateAsync(int carId, string imageUrl);
+        Task CreateAsync(int carId, int imageId);
     }
 }

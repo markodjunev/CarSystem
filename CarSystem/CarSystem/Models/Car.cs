@@ -2,9 +2,15 @@
 {
     using CarSystem.Models.Common;
     using CarSystem.Models.Enums;
+    using System.Collections.Generic;
 
     public class Car : BaseDeletableModel<int>
     {
+        public Car()
+        {
+            this.CarImages = new HashSet<CarImage>();
+        }
+
         public string OwnerName { get; set; }
 
         public string NumberPlate { get; set; }
@@ -22,5 +28,7 @@
         public int ModelId { get; set; }
 
         public virtual Model Model { get; set; }
+
+        public ICollection<CarImage> CarImages { get; set; }
     }
 }

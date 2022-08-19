@@ -16,15 +16,17 @@ namespace CarSystem.Controllers
         private readonly IModelsService modelsService;
         private readonly ICloudinaryService cloudinaryService;
         private readonly ICarImagesService carImagesService;
+        private readonly IImagesService imagesService;
 
         public CarsController(ICarsService carsService, IMakesService makesService, IModelsService modelsService, ICloudinaryService cloudinaryService,
-            ICarImagesService carImagesService)
+            ICarImagesService carImagesService, IImagesService imagesService)
         {
             this.carsService = carsService;
             this.makesService = makesService;
             this.modelsService = modelsService;
             this.cloudinaryService = cloudinaryService;
             this.carImagesService = carImagesService;
+            this.imagesService = imagesService;
         }
 
         [HttpPost]
@@ -59,11 +61,13 @@ namespace CarSystem.Controllers
 
             foreach (var image in input.Images)
             {
-                string imageUrl = await this.cloudinaryService.UploadPictureAsync(
+                string originalPathImageUrl = await this.cloudinaryService.UploadPictureAsync(
                 image,
                 input.OwnerName);
 
-                await this.carImagesService.CreateAsync(carId, imageUrl);
+                var imageId = await this.imagesService.CreateAsync(originalPathImageUrl);
+
+                await this.carImagesService.CreateAsync(carId, imageId);
             }
 
             return Ok();

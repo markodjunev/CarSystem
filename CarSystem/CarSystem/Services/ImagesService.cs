@@ -8,25 +8,26 @@ using System.Threading.Tasks;
 
 namespace CarSystem.Services
 {
-    public class CarImagesService : ICarImagesService
+    public class ImagesService : IImagesService
     {
         private readonly ApplicationDbContext dbContext;
 
-        public CarImagesService(ApplicationDbContext dbContext)
+        public ImagesService(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
         }
 
-        public async Task CreateAsync(int carId, int imageId)
+        public async Task<int> CreateAsync(string originalPath)
         {
-            var carImage = new CarImage
+            var image = new Image
             {
-                CarId = carId,
-                ImageId = imageId,
+                OriginalPath = originalPath,
             };
 
-            await this.dbContext.CarImages.AddAsync(carImage);
+            await this.dbContext.AddAsync(image);
             await this.dbContext.SaveChangesAsync();
+
+            return image.Id;
         }
     }
 }
