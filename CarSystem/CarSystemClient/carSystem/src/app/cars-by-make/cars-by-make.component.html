@@ -1,9 +1,9 @@
 <div class="row">
-  <div class="col-lg-3" *ngFor="let car of cars">
-    <div class="card" style="width: 18rem;">
-      <img class="card-img-top" [src]="car.imageUrl" alt="Card image cap">
+  <div class="col-lg-6" *ngFor="let car of cars">
+    <div class="card">
+      <img class="card-img-top" src={{car.imageUrl}} title={{car.ownerName}} alt="{{car.ownerName}}">
       <div class="card-body">
-        <h5 class="card-title">Make: {{car.makeName}}</h5>
+        <h5 class="card-title"><a routerLink="/details/{{car.id}}">Make: {{car.makeName}}</a></h5>
         <p class="card-text">Model: {{car.modelName}}</p>
       </div>
       <ul class="list-group list-group-flush">
@@ -13,10 +13,6 @@
         <li class="list-group-item">Type of color: {{car.typeOfColor}}</li>
         <li class="list-group-item">Horsepower: {{car.horsepower}}</li>
       </ul>
-      <div class="card-body">
-        <button class="btn btn-success" routerLink="/edit/{{car.id}}">Edit</button>
-        <button class="btn btn-danger" (click)="delete(car.id)">Delete</button>
-      </div>
     </div>
   </div>
 </div>

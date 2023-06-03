@@ -34,10 +34,4 @@ export class CarsByMakeComponent implements OnInit {
       console.log(this.cars);
     })
   }
-
-  delete(carId: number){
-    this.carsService.delete(carId).subscribe(data =>{
-      this.fetchCars();
-    });
-  }
 }

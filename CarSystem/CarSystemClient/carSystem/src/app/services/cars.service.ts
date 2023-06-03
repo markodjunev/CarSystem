@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CarByMake } from '../models/CarByMake';
-import { CreateCar } from '../models/CreateCar';
+import { CarDetails } from '../models/CarDetails';
 import { EditCar } from '../models/EditCar';
 import { UpdateCar } from '../models/UpdateCar';
 
@@ -18,6 +18,10 @@ export class CarsService {
 
   getCarsByMake(id: number): Observable<CarByMake[]> {
     return this.http.get<CarByMake[]>(this.carPath + '/carsbymake/' + id)
+  }
+
+  getCarDetails(id: number): Observable<CarDetails> {
+    return this.http.get<CarDetails>(this.carPath + '/details/' + id)
   }
 
   delete(id: number){

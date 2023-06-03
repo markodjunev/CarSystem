@@ -80,14 +80,34 @@ namespace CarSystem.Services
                     MakeName = x.Make.Name,
                     ModelName = x.Model.Name,
                     TypeOfColor = x.TypeOfColor.ToString(),
+                    ImageUrl = x.CarImages.Select(i => i.Image.OriginalPath)
+                    .FirstOrDefault(),
+                }).ToList();
+
+            return cars;
+        }
+
+        public CarDetailsViewModel GetById(int id)
+        {
+            var car = this.dbContext.Cars.Where(x => x.Id == id)
+                .Select(x => new CarDetailsViewModel
+                {
+                    Id = x.Id,
+                    OwnerName = x.OwnerName,
+                    NumberPlate = x.NumberPlate,
+                    EngineCapacity = x.EngineCapacity,
+                    Horsepower = x.Horsepower,
+                    MakeName = x.Make.Name,
+                    ModelName = x.Model.Name,
+                    TypeOfColor = x.TypeOfColor.ToString(),
                     ImageUrls = x.CarImages.Select(i => new ImageOriginalPath
                     {
                         ImageUrl = i.Image.OriginalPath,
                     })
                     .ToList(),
-                }).ToList();
+                }).FirstOrDefault();
 
-            return cars;
+            return car;
         }
 
         public UpdateCarViewModel GetUpdateModel(int id)

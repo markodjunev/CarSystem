@@ -1,6 +1,9 @@
-﻿namespace CarSystem.ViewModels.Cars
+﻿using CarSystem.ViewModels.Images;
+using System.Collections.Generic;
+
+namespace CarSystem.ViewModels.Cars
 {
-    public class CarByMakeViewModel
+    public class CarDetailsViewModel
     {
         public int Id { get; set; }
 
@@ -18,6 +21,6 @@
 
         public string ModelName { get; set; }
 
-        public string ImageUrl { get; set; }
+        public List<ImageOriginalPath> ImageUrls { get; set; }
     }
 }

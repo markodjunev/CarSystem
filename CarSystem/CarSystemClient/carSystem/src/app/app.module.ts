@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ModelsService } from './services/models.service';
 import { ErrorInterceptorService } from './services/error-interceptor.service';
+import { CarDetailsComponent } from './car-details/car-details.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ErrorInterceptorService } from './services/error-interceptor.service';
     HomeComponent,
     CreateCarComponent,
     EditCarComponent,
-    CarsByMakeComponent
+    CarsByMakeComponent,
+    CarDetailsComponent
   ],
   imports: [
     BrowserModule,

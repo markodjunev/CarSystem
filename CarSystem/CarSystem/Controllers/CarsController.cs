@@ -152,6 +152,22 @@ namespace CarSystem.Controllers
             return Ok(cars);
         }
 
+        [HttpGet]
+        [Route(nameof(Details) + "/{id}")]
+        public ActionResult<CarDetailsViewModel> Details(int id)
+        {
+            var carExist = this.carsService.Exist(id);
+
+            if (!carExist)
+            {
+                return NotFound("Car doesn't exist!");
+            }
+
+            var car = this.carsService.GetById(id);
+
+            return Ok(car);
+        }
+
         [HttpDelete]
         [Route(nameof(Delete) + "/{id}")]
         public async Task<IActionResult> Delete(int id)

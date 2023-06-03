@@ -25,6 +25,8 @@ namespace CarSystem.Services.Interfaces
 
         List<CarByMakeViewModel> GetAllByMake(int makeId);
 
+        CarDetailsViewModel GetById(int id);
+
         Task DeleteAsync(int id);
     }
 }
