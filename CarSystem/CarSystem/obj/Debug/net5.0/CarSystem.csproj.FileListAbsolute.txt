@@ -154,3 +154,10 @@ C:\Users\User\Documents\GitHub\CarSystem\CarSystem\CarSystem\obj\Debug\net5.0\Ca
 C:\Users\User\Documents\GitHub\CarSystem\CarSystem\CarSystem\obj\Debug\net5.0\CarSystem.genruntimeconfig.cache
 C:\Users\User\Documents\GitHub\CarSystem\CarSystem\CarSystem\bin\Debug\net5.0\CloudinaryDotNet.dll
 C:\Users\User\Documents\GitHub\CarSystem\CarSystem\CarSystem\bin\Debug\net5.0\Microsoft.Extensions.WebEncoders.dll
+C:\Users\User\Documents\GitHub\CarSystem\CarSystem\CarSystem\bin\Debug\net5.0\CarSystemClient\carSystem\angular.json
+C:\Users\User\Documents\GitHub\CarSystem\CarSystem\CarSystem\bin\Debug\net5.0\CarSystemClient\carSystem\package-lock.json
+C:\Users\User\Documents\GitHub\CarSystem\CarSystem\CarSystem\bin\Debug\net5.0\CarSystemClient\carSystem\package.json
+C:\Users\User\Documents\GitHub\CarSystem\CarSystem\CarSystem\bin\Debug\net5.0\CarSystemClient\carSystem\tsconfig.app.json
+C:\Users\User\Documents\GitHub\CarSystem\CarSystem\CarSystem\bin\Debug\net5.0\CarSystemClient\carSystem\tsconfig.json
+C:\Users\User\Documents\GitHub\CarSystem\CarSystem\CarSystem\bin\Debug\net5.0\CarSystemClient\carSystem\tsconfig.spec.json
+C:\Users\User\Documents\GitHub\CarSystem\CarSystem\CarSystem\bin\Debug\net5.0\Microsoft.AspNetCore.SpaServices.Extensions.dll

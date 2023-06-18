@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 using CarSystem.Middlewares.Extensions;
 using CloudinaryDotNet;
 
@@ -58,6 +59,11 @@ namespace CarSystem
 
             });
 
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "CarSystemClient/carSystem/dist/car-system";
+            });
+
             services.AddSingleton(this.Configuration);
 
             services.AddScoped<IMakesService, MakesService>();
@@ -99,6 +105,9 @@ namespace CarSystem
 
             app.UseRouting();
 
+            app.UseStaticFiles();
+            app.UseSpaStaticFiles();
+
             app.UseCors(allowSpecificOrigins);
 
             app.UseSeedMakesMiddleware();
@@ -111,6 +120,16 @@ namespace CarSystem
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "CarSystemClient/carSystem";
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseAngularCliServer(npmScript: "start");
+                }
             });
         }
     }
